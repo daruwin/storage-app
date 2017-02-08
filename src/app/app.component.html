@@ -1,0 +1,35 @@
+<section class="todoapp">
+	<header class="header">
+		<h1>Items</h1>
+		<input class="new-todo" 
+		placeholder="Do you want to add an item?"
+		autofocus="autofocus"
+		[(ngModel)]="newItem.title"
+		(keyup.enter)="addItem()">
+	</header>
+	
+	<section class="main" *ngIf="items2.length > 0">
+		<ul class="todo-list">
+			<li *ngFor="let item of items2"
+			[class.completed]="item.complete">
+				<div class="view">
+					<input class="toggle"
+					type="checkbox"
+					(click)="toggleItemComplete(item)"
+					[checked]="item.complete">
+					<label>{{ item.title }}</label>
+					<button class="destroy"
+					(click)="removeItem(item)">
+					</button>
+				</div>
+			</li>
+		</ul>
+	</section>
+
+	<footer class="footer" *ngIf="items2.length > 0">
+		<span class="todo-count">
+			<strong>{{ items2.length }}</strong>
+			{{ items2.length == 1 ? 'item' : 'items' }} left
+		</span>
+	</footer>
+</section>
